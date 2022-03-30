@@ -1,0 +1,15 @@
+server:
+  port: 8001
+
+spring:
+  activemq:
+    broker-url: xxx
+    user: admin
+      password: admin
+      pool:
+        enabled: true
+        max-connections: 50
+      in-memory: true
+      jms:
+        cache:
+          session-cache-size: 5
