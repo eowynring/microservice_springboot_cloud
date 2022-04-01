@@ -21,6 +21,19 @@ public class SampleTest {
   public void testSelect(){
     System.out.println(("----- selectAll method test ------"));
     List<User> userList = userMapper.selectList(null);
-    userList.forEach(System.out::println);  }
+    userList.forEach(System.out::println);
+  }
+
+  @Test
+  public void testVersion(){
+    User user = userMapper.selectById(5);
+    user.setAge(52);
+    user.setVersion(4);
+    int i = userMapper.updateById(user);
+    if (i==0){
+      throw new RuntimeException("乐观锁更新失败");
+    }
+    System.out.println(i);
+  }
 
 }
