@@ -1,12 +1,11 @@
 server:
   port: 8002
-
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: xx
+    url: mpw:VjBr2TmG1CXBpnGuDMYvRxTDBejVbQ/2EWhoJBPnGqWN14xQpwOhvxWDMKUENSoAw+dPsbI3cRhanT/i7k5WAc2MiiZpV4tpZABLXYYt51z/3zChwaVRQ+GbyeJSxffgOgbCe3DNqX4UhwSiaLO47dI7hjez2fzfQ5F01BBpF4MSRkVUbZIyq4wiu/LUeW8E
     username: root
-    password: lqhmysql
+    password: mpw:dq3GWpSBzEdes8ofFtRFAw==
     test-on-borrow: true
     test-while-idle: true
     time-between-eviction-runs-millis: 3600000
