@@ -1,6 +1,8 @@
 server:
-  port: 8002
+  port: 8003
 spring:
+  application:
+    name: spring-boot-mybatis-plus
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: mpw:VjBr2TmG1CXBpnGuDMYvRxTDBejVbQ/2EWhoJBPnGqWN14xQpwOhvxWDMKUENSoAw+dPsbI3cRhanT/i7k5WAc2MiiZpV4tpZABLXYYt51z/3zChwaVRQ+GbyeJSxffgOgbCe3DNqX4UhwSiaLO47dI7hjez2fzfQ5F01BBpF4MSRkVUbZIyq4wiu/LUeW8E
@@ -11,4 +13,7 @@ spring:
     time-between-eviction-runs-millis: 3600000
     keepAlive: true
     validationQuery: select 1
-
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 39.105.15.49:8848

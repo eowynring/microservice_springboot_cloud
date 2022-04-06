@@ -9,12 +9,8 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>spring-boot-activemq</artifactId>
+  <artifactId>spring-boot-openfeign</artifactId>
 
-  <properties>
-    <maven.compiler.source>8</maven.compiler.source>
-    <maven.compiler.target>8</maven.compiler.target>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>com.microservice</groupId>
@@ -22,9 +18,8 @@
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-activemq</artifactId>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
     </dependency>
   </dependencies>
-
 </project>
