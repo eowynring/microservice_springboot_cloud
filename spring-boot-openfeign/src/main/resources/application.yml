@@ -10,6 +10,8 @@ spring:
 
 feign:
   client:
+    httpClient:
+      enable: true
     config:
       default: #这里就是指的所有被加载的默认FeignClient实现的服务配置都生效
         connectTimeout: 111000
