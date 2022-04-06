@@ -7,3 +7,13 @@ spring:
     nacos:
       discovery:
         server-addr: 39.105.15.49:8848
+
+feign:
+  client:
+    config:
+      default: #这里就是指的所有被加载的默认FeignClient实现的服务配置都生效
+        connectTimeout: 111000
+        readTimeout: 111000
+logging:
+  level:
+    com.microservice: DEBUG
