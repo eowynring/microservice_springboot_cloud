@@ -26,11 +26,12 @@ public class TestController {
   @GetMapping("/test")
   public String test(){
     System.out.println(("----- selectAll method test ------"));
-    try {
+    /*try {
       Thread.sleep(3000);
     } catch (InterruptedException e) {
 
-    }
+    }*/
+    int i = 10/0;
     List<User> userList = userMapper.selectList(null);
     userList.forEach(System.out::println);
     return "ok";

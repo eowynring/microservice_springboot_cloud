@@ -9,13 +9,21 @@ spring:
         server-addr: 39.105.15.49:8848
 
 feign:
+  hystrix:
+    enabled: true
   client:
     httpClient:
       enable: true
     config:
       default: #这里就是指的所有被加载的默认FeignClient实现的服务配置都生效
-        connectTimeout: 111000
-        readTimeout: 111000
+        connectTimeout: 2000
+        readTimeout: 60000
+
+
+ribbon:
+  http:
+    client:
+      enabled: true
 logging:
   level:
     com.microservice: DEBUG
