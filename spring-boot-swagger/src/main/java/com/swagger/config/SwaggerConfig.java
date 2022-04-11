@@ -1,5 +1,6 @@
 package com.swagger.config;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -20,9 +21,11 @@ public class SwaggerConfig {
   public Docket createRestApi() {
       return new Docket(DocumentationType.OAS_30).apiInfo(
           new ApiInfoBuilder()
+              .version("1.0")
+              .description("spring-boot-swagger")
               .contact(new Contact("Guo", "", "G***@gamil.com"))
               .title("Swagger3测试项目")
               .build()
-      );
+      ).enable(true);
     }
 }
