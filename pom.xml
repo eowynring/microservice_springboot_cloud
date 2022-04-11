@@ -24,6 +24,7 @@
         <module>spring-boot-excel</module>
         <module>spring-boot-openfeign</module>
         <module>common</module>
+        <module>spring-boot-aop</module>
     </modules>
 
     <properties>
