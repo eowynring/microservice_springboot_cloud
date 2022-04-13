@@ -4,8 +4,12 @@ import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.metadata.style.WriteCellStyle;
 import com.alibaba.excel.write.metadata.style.WriteFont;
 import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
+import com.alibaba.fastjson.JSONArray;
 import com.excel.entity.UserEntity;
+import com.excel.entity.UserReadEntity;
+import com.excel.listener.UserDataListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -24,6 +28,50 @@ public class ExcelMain {
   public static void main(String[] args) throws FileNotFoundException {
     //ExcelTest1();
     //ExcelTest2();
+    //ExcelTest3();
+    //ExcelReadTest1();
+    //ExcelReadTest2();
+    //ExcelReadTest3();
+    //ExcelReadTest4();
+
+  }
+
+  private static void ExcelReadTest4() throws FileNotFoundException {
+    //动态参数化来生成文件
+    FileInputStream inputStream = new FileInputStream(new File("/Users/choicewell/goffy/doc/easyexcel-user1.xlsx"));
+    //初始化一个监听器
+    UserDataListener userDataListener = new UserDataListener();
+    //读取文件数据，指定数据所在行使用headRowNumber方法
+    EasyExcel.read(inputStream, userDataListener).sheet().headRowNumber(2).doRead();
+    System.out.println("表头：" + JSONArray.toJSONString(userDataListener.getHeadList()));
+    System.out.println("数据体：" + JSONArray.toJSONString(userDataListener.getDataList()));
+  }
+
+  private static void ExcelReadTest3() {
+    //读取复杂表头文件
+    File filePath = new File("/Users/choicewell/goffy/doc/easyexcel-user1.xls");
+    List<UserEntity> list = EasyExcel.read(filePath).head(UserEntity.class).sheet().doReadSync();
+    System.out.println(JSONArray.toJSONString(list));
+  }
+
+  private static void ExcelReadTest2() throws FileNotFoundException {
+    FileInputStream inputStream = new FileInputStream(new File("/Users/choicewell/goffy/doc/easyexcel-user1.xls"));
+    //初始化一个监听器
+    UserDataListener userDataListener = new UserDataListener();
+    //读取文件数据
+    EasyExcel.read(inputStream, userDataListener).sheet().doRead();
+    System.out.println("表头：" + JSONArray.toJSONString(userDataListener.getHeadList()));
+    System.out.println("数据体：" + JSONArray.toJSONString(userDataListener.getDataList()));
+  }
+
+  private static void ExcelReadTest1() throws FileNotFoundException {
+    //同步读取文件内容
+    FileInputStream inputStream = new FileInputStream(new File("/Users/choicewell/goffy/doc/easyexcel-user1.xls"));
+    List<UserReadEntity> list = EasyExcel.read(inputStream).head(UserReadEntity.class).sheet().doReadSync();
+    System.out.println(JSONArray.toJSONString(list));
+  }
+
+  private static void ExcelTest3() throws FileNotFoundException {
     //定义多级表头
     List<List<String>> headList = new ArrayList<>();
     headList.add(Lists.newArrayList("班级"));

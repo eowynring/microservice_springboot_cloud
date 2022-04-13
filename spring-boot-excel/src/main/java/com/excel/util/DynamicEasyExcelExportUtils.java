@@ -117,10 +117,9 @@ public class DynamicEasyExcelExportUtils {
       dataMap.put("className", "一年级");
       if (i%2==0){
         dataMap.put("name", "张三" + i);
-      }else{
-        dataMap.put("name", "");
+
       }
-      dataMap.put("sex", "男");
+
       dataList.add(dataMap);
     }
     byte[] stream = exportExcelFile(headColumnMap, dataList);
