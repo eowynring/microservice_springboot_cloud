@@ -19,12 +19,12 @@
         <module>spring-boot-swagger</module>
         <module>spring-boot-activemq</module>
         <module>spring-boot-validator</module>
-        <module>spring-boot-cache-redis</module>
         <module>spring-boot-cache-caffeine</module>
         <module>spring-boot-excel</module>
         <module>spring-boot-openfeign</module>
         <module>common</module>
         <module>spring-boot-aop</module>
+        <module>spring-boot-cache-redis</module>
     </modules>
 
     <properties>
