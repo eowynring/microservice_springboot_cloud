@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: spring-boot-mysql-read-write-separation
+  datasource:
+    master:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.102.31:3306/test
+      username: root
+      password: 123456
+    slave:
+      jdbc-url: jdbc:mysql://192.168.102.56:3306/test
+      username: pig   # 只读账户
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+  mapper-locations: classpath:mapper/*.xml

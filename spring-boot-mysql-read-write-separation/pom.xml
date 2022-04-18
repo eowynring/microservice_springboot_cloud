@@ -9,7 +9,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>spring-boot-swagger</artifactId>
+  <artifactId>spring-boot-mysql-read-write-separation</artifactId>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
@@ -22,21 +22,27 @@
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-boot-starter</artifactId>
-      <version>3.0.0</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
     </dependency>
-    <!--更换swagger3的UI-->
     <dependency>
-      <groupId>com.github.xiaoymin</groupId>
-      <artifactId>swagger-bootstrap-ui</artifactId>
-      <version>1.9.6</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
     </dependency>
-    <!--集成增强文档knife4j来实现离线文档的导出-->
     <dependency>
-      <groupId>com.github.xiaoymin</groupId>
-      <artifactId>knife4j-spring-boot-starter</artifactId>
-      <version>3.0.2</version>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>2.2.1</version>
     </dependency>
   </dependencies>
   <build>

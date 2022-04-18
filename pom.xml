@@ -25,6 +25,7 @@
         <module>common</module>
         <module>spring-boot-aop</module>
         <module>spring-boot-cache-redis</module>
+        <module>spring-boot-mysql-read-write-separation</module>
     </modules>
 
     <properties>
