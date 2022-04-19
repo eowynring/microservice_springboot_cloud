@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.readwrite.mapper.MemberMapper">
-
-
-  <select id="select" resultType="">
-
+  <insert id="insert" parameterType="com.readwrite.pojo.Member">
+    insert into `member` (`id`,`name`)  values (#{id},#{name})
+  </insert>
+  <select id="select" parameterType="int" resultType="com.readwrite.pojo.Member">
+    select id,`name` as name from `member` where  id = #{id}
   </select>
+
 
 </mapper>

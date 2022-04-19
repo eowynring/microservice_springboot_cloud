@@ -4,15 +4,17 @@ spring:
   datasource:
     master:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://192.168.102.31:3306/test
+      jdbc-url: jdbc:mysql://39.105.15.49:3306/test01
       username: root
-      password: 123456
+      password:
     slave:
-      jdbc-url: jdbc:mysql://192.168.102.56:3306/test
-      username: pig   # 只读账户
-      password: 123456
+      jdbc-url: jdbc:mysql://120.46.149.32:3306/test01
+      username: root   # 只读账户
+      password:
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
   configuration:
   mapper-locations: classpath:mapper/*.xml
+server:
+  port: 8888
