@@ -26,6 +26,7 @@
         <module>spring-boot-aop</module>
         <module>spring-boot-cache-redis</module>
         <module>spring-boot-mysql-read-write-separation</module>
+      <module>spring-boot-mybatis-plus-dynamic-datasource</module>
     </modules>
 
     <properties>
