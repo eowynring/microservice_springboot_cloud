@@ -3,6 +3,8 @@ package com.readwrite.controller;
 import com.readwrite.pojo.Member;
 import com.readwrite.service.MemberService;
 import javax.annotation.Resource;
+import lombok.Getter;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +31,12 @@ public class MemberController {
   @PostMapping("/get")
   public String get(){
     memberService.get(1);
+    return "ok";
+  }
+
+  @GetMapping("/getMaster")
+  public String getMaster(){
+    memberService.getMaster();
     return "ok";
   }
 }

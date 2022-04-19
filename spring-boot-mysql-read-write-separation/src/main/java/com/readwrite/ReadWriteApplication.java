@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * 基于AOP实现读写分离
  * @author guofei
  * @date 2022/4/18 11:44 AM
  */

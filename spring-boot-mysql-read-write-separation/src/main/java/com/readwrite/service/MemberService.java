@@ -1,5 +1,6 @@
 package com.readwrite.service;
 
+import com.readwrite.annotation.Master;
 import com.readwrite.mapper.MemberMapper;
 import com.readwrite.pojo.Member;
 import javax.annotation.Resource;
@@ -23,5 +24,10 @@ public class MemberService {
   public void get(int id) {
     Member select = memberMapper.select(id);
     log.info("--member--{}",select);
+  }
+
+  @Master
+  public void getMaster() {
+
   }
 }

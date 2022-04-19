@@ -1,6 +1,8 @@
 package com.readwrite.aop;
 
 import com.readwrite.handle.DBContextHolder;
+import org.apache.commons.lang3.StringUtils;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -42,6 +44,20 @@ public class DataSourceAop {
   public void write(){
     DBContextHolder.master();
   }
+
+  /**
+   * 另一种写法：if...else...  判断哪些需要读从数据库，其余的走主数据库
+   * @param joinPoint
+   */
+  /*@Before("execution(* com.readwrite.service.impl.*.*(..))")
+  public void before(JoinPoint joinPoint){
+    String name = joinPoint.getSignature().getName();
+    if (StringUtils.startsWithAny(name,"get","selet","find")){
+      DBContextHolder.slave();
+    }else {
+      DBContextHolder.master();
+    }
+  }*/
 
 
 
