@@ -37,4 +37,9 @@ public class MybatisPlusConfig {
     interceptor.addInnerInterceptor(paginationInnerInterceptor);
     return interceptor;
   }
+
+  @Bean
+  public EasySqlInjector sqlInjector(){
+    return new EasySqlInjector();
+  }
 }

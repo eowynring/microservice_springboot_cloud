@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.microservice.mapper.UserMapper;
 import com.microservice.pojo.User;
 import com.microservice.service.UserService;
+import com.microservice.service.UserServiceNew;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,6 +24,9 @@ public class TestController {
 
   @Resource
   private UserService userService;
+
+  @Resource
+  private UserServiceNew userServiceNew;
 
   @GetMapping("/test")
   public String test(){
@@ -46,5 +51,11 @@ public class TestController {
     System.out.println("总记录数： "+userIPage.getTotal());
     userIPage.getRecords().forEach(System.out::println);
     return "ok";
+  }
+
+  @PostMapping("/testBatch")
+  public String testBatch(){
+    boolean b = userServiceNew.saveBatchTest();
+    return b ? "success" : "error";
   }
 }
