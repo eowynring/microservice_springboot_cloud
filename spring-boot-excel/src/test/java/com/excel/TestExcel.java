@@ -61,4 +61,28 @@ public class TestExcel {
       }
     }
   }
+
+  @Test
+  public void manyDiffSheet(){
+    ExcelWriter excelWriter = null;
+    // 方法3 如果写到不同的sheet 不同的对象
+    String fileName = TestFileUtil.getPath() + "repeatedWrite" + System.currentTimeMillis() + ".xlsx";
+    try {
+      // 这里 指定文件
+      excelWriter = EasyExcel.write(fileName).build();
+      // 去调用写入,这里我调用了五次，实际使用时根据数据库分页的总的页数来。这里最终会写到5个sheet里面
+      for (int i = 0; i < 5; i++) {
+        // 每次都要创建writeSheet 这里注意必须指定sheetNo 而且sheetName必须不一样。这里注意DemoData.class 可以每次都变，我这里为了方便 所以用的同一个class 实际上可以一直变
+        WriteSheet writeSheet = EasyExcel.writerSheet(i, "模板" + i).head(DemoData.class).build();
+        // 分页去数据库查询数据 这里可以去数据库查询每一页的数据
+        List<DemoData> data = DataDemo.data();
+        excelWriter.write(data, writeSheet);
+      }
+    } finally {
+      // 千万别忘记finish 会帮忙关闭流
+      if (excelWriter != null) {
+        excelWriter.finish();
+      }
+    }
+  }
 }
