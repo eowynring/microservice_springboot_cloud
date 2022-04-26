@@ -10,12 +10,12 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://39.105.15.49:3306/test01
           username: root
-          password:
+          password: lqhmysql
         slave:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://120.46.149.32:3306/test01
           username: root   # 只读账户
-          password:
+          password: guofei??
 
 server:
   port: 8888

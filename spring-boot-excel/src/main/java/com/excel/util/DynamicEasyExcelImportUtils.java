@@ -1,3 +1,4 @@
+/*
 package com.excel.util;
 
 import com.alibaba.excel.EasyExcelFactory;
@@ -14,26 +15,32 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+*/
 /**
  * @author guofei
  * @date 2022/4/13 6:00 PM
- */
+ *//*
+
 public class DynamicEasyExcelImportUtils {
-  /**
+  */
+/**
    * 动态获取全部列和数据体，默认从第一行开始解析数据
    * @param stream
    * @return
-   */
+   *//*
+
   public static List<Map<String,String>> parseExcelToView(byte[] stream) {
     return parseExcelToView(stream, 1);
   }
 
-  /**
+  */
+/**
    * 动态获取全部列和数据体
    * @param stream           excel文件流
    * @param parseRowNumber   指定读取行
    * @return
-   */
+   *//*
+
   public static List<Map<String,String>> parseExcelToView(byte[] stream, Integer parseRowNumber) {
     DynamicEasyExcelListener readListener = new DynamicEasyExcelListener();
     EasyExcelFactory.read(new ByteArrayInputStream(stream)).registerReadListener(readListener).headRowNumber(parseRowNumber).sheet(0).doRead();
@@ -60,11 +67,13 @@ public class DynamicEasyExcelImportUtils {
     return excelDataList;
   }
 
-  /**
+  */
+/**
    * 文件导入测试
    * @param args
    * @throws IOException
-   */
+   *//*
+
   public static void main(String[] args) throws IOException {
     FileInputStream inputStream = new FileInputStream(new File("/Users/choicewell/goffy/doc/easyexcel-user1.xlsx"));
     byte[] stream = IoUtils.toByteArray(inputStream);
@@ -73,3 +82,4 @@ public class DynamicEasyExcelImportUtils {
     inputStream.close();
   }
 }
+*/
