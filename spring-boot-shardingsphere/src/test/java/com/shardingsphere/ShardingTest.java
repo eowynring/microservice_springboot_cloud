@@ -1,8 +1,11 @@
 package com.shardingsphere;
 
+import com.shardingsphere.dao.ProductDao;
 import com.shardingsphere.pojo.ProductInfo;
 import com.shardingsphere.service.ProductService;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +23,9 @@ public class ShardingTest {
   @Resource
   ProductService productService;
 
+  @Resource
+  ProductDao productDao;
+
   @Test
   public void testCreateProduct() {
     for (long i = 1; i < 10; i++) {
@@ -32,5 +38,21 @@ public class ShardingTest {
       productInfo.setPrice(new BigDecimal(i));
       productService.createProduct(productInfo);
     }
+  }
+  @Test
+  public void testSelectProductList(){
+    List<ProductInfo> productInfos = productService.queryProduct(1,10);
+    System.out.println(productInfos);
+  }
+
+  @Test
+  public void testSelectCount(){
+    int i = productDao.selectCount();
+    System.out.println(i);
+  }
+  @Test
+  public void testSelectGroupList(){
+    List<Map> maps = productDao.selectProductGroupList();
+    System.out.println(maps);
   }
 }

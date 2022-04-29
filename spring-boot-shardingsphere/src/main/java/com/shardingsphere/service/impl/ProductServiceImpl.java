@@ -4,12 +4,17 @@ import com.shardingsphere.dao.ProductDao;
 import com.shardingsphere.pojo.ProductDescript;
 import com.shardingsphere.pojo.ProductInfo;
 import com.shardingsphere.service.ProductService;
+import java.util.List;
 import javax.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /**
  * @author guofei
  * @date 2022/4/29 5:42 PM
  */
+@Service
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
   @Resource
@@ -27,5 +32,11 @@ public class ProductServiceImpl implements ProductService {
     //新增商品描述信息
     productDao.insertProductDescript(productDescript);
 
+  }
+
+  @Override
+  public List<ProductInfo> queryProduct(int page, int pageSize) {
+    int start = (page-1) * pageSize;
+    return productDao.selectProductList(start,pageSize);
   }
 }
