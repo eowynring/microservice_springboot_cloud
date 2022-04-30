@@ -1,7 +1,0 @@
-server:
-  port: 8777
-  servlet:
-    context-path: /spring-boot-shardingsphere
-spring:
-  application:
-    name: spring-boot-shardingsphere
