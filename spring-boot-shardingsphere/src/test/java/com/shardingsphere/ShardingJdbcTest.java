@@ -2,8 +2,10 @@ package com.shardingsphere;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shardingsphere.mapper.CourseMapper;
+import com.shardingsphere.mapper.DictMapper;
 import com.shardingsphere.mapper.UserMapper;
 import com.shardingsphere.pojo.Course;
+import com.shardingsphere.pojo.Dict;
 import com.shardingsphere.pojo.User;
 import javax.annotation.Resource;
 import org.junit.Test;
@@ -72,6 +74,24 @@ public class ShardingJdbcTest {
     QueryWrapper<User> wrapper = new QueryWrapper<>();
     wrapper.eq("user_id", 536472243283165185L);
     userMapper.selectOne(wrapper);
+  }
+
+  @Resource
+  private DictMapper dictMapper;
+
+  @Test
+  public void addDict() {
+    Dict dict = new Dict();
+    dict.setStatus("Normal");
+    dict.setValue("启用");
+    dictMapper.insert(dict);
+  }
+
+  @Test
+  public void deleteDict() {
+    QueryWrapper<Dict> wrapper = new QueryWrapper<>();
+    wrapper.eq("dict_id", 536486065947541505L);
+    dictMapper.delete(wrapper);
   }
 
 
