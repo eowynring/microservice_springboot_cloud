@@ -1,0 +1,36 @@
+server:
+  port: 8003
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  sharding:
+    jdbc:
+      datasource:
+        names: master,slave
+        master:
+          type: com.zaxxer.hikari.HikariDataSource
+          hikari:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+          jdbc-url: jdbc:mysql://39.105.15.49:3306/test01?serverTimezone=GMT%2B8
+          username: root
+          password:
+        slave:
+          type: com.zaxxer.hikari.HikariDataSource
+          hikari:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://120.46.149.32:3306/test01?serverTimezone=GMT%2B8
+          username: root
+          password:
+      config:
+        masterslave:
+          load-balance-algorithm-type: round_robin
+          name: ms
+          master-data-source-name: master
+          slave-data-source-names: slave
+        props:
+          sql:
+            show: true
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 39.105.15.49:8848
