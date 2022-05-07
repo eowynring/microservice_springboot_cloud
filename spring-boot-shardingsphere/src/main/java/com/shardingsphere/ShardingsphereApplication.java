@@ -1,6 +1,7 @@
 package com.shardingsphere;
 
 import lombok.val;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2022/4/29 5:37 PM
  */
 @SpringBootApplication
-//@MapperScan("com.shardingsphere.mapper")
+@MapperScan("com.shardingsphere.mapper")
 public class ShardingsphereApplication {
 
 

@@ -18,9 +18,9 @@ spring:
           type: com.zaxxer.hikari.HikariDataSource
           hikari:
             driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://120.46.149.32:3306/test01?serverTimezone=GMT%2B8
+          jdbc-url: jdbc:mysql://120.46.149.32:3306/test01?serverTimezone=GMT%2B8
           username: root
-          password:
+          password: ??
       config:
         masterslave:
           load-balance-algorithm-type: round_robin

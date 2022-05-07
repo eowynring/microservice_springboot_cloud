@@ -27,7 +27,7 @@ public class ShardingSphereTest2 {
         Member member = new Member();
         member.setId(7);
         member.setName("shardingsphere");
-        member2Mapper.insert(member);
+        ///member2Mapper.insert(member);
     }
 }
 
