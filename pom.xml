@@ -29,6 +29,7 @@
         <module>spring-boot-mybatis-plus-dynamic-datasource</module>
         <module>spring-boot-logback</module>
         <module>spring-boot-shardingsphere</module>
+        <module>spring-boot</module>
     </modules>
 
     <properties>
