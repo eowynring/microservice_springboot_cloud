@@ -19,7 +19,7 @@ public class UserController {
 
   @GetMapping("/test")
   public String test(){
-    return userService.getUserList().toJSONString();
+    return "hello";
   }
 
 }
