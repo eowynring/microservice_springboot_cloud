@@ -1,5 +1,6 @@
 package com.boot.handle;
 
+import com.boot.anno.UnInterception;
 import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,10 @@ public class MyInterceptorHandle implements HandlerInterceptor {
     Method method = handlerMethod.getMethod();
     String name = method.getName();
     log.info("====拦截到了方法:{}，在该方法执行之前执行====", name);
+    UnInterception annotation = method.getAnnotation(UnInterception.class);
+    if (annotation!=null){
+      return true;
+    }
     // 判断用户有没有登陆，一般登陆之后的用户都有一个对应的token
     String token = request.getParameter("token");
     if (null == token || "".equals(token)) {
@@ -44,6 +49,6 @@ public class MyInterceptorHandle implements HandlerInterceptor {
   public void afterCompletion(HttpServletRequest request, HttpServletResponse response,
       Object handler, Exception ex) throws Exception {
     //HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
-    log.info("整个请求都处理完咯，DispatcherServlet也渲染了对应的视图咯，此时我可 以做一些清理的工作了");
+    log.info("整个请求都处理完咯，DispatcherServlet也渲染了对应的视图咯，此时可以做一些清理的工作了");
   }
 }

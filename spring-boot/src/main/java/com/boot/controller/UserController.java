@@ -1,5 +1,6 @@
 package com.boot.controller;
 
+import com.boot.anno.UnInterception;
 import com.boot.service.UserService;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,5 +22,12 @@ public class UserController {
   public String test(){
     return "hello";
   }
+  @GetMapping("/test2")
+  @UnInterception
+  public String test2(){
+    return "test2";
+  }
+
+
 
 }
