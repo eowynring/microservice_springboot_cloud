@@ -20,7 +20,7 @@ public class MyInterceptorHandle implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
       throws Exception {
-    HandlerMethod handlerMethod = (HandlerMethod) handler;
+    /*HandlerMethod handlerMethod = (HandlerMethod) handler;
     Method method = handlerMethod.getMethod();
     String name = method.getName();
     log.info("====拦截到了方法:{}，在该方法执行之前执行====", name);
@@ -33,7 +33,7 @@ public class MyInterceptorHandle implements HandlerInterceptor {
     if (null == token || "".equals(token)) {
       log.info("用户未登录，没有权限执行......请登录");
       return false;
-    }
+    }*/
     // 返回true才会继续执行，返回false则取消当前请求
     return true;
   }
