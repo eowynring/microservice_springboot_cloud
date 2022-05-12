@@ -1,6 +1,7 @@
 package com.boot.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.boot.pojo.User;
 
 /**
  * @author guofei
@@ -10,4 +11,7 @@ public interface UserService {
 
   JSONObject getUserList();
 
+  User getUserListNew();
+
+  void save(User user);
 }
