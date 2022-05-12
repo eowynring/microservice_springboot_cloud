@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
+ * 模拟一个登录用户信息Session
  * @author guofei
  * @date 2022/5/12 10:37 AM
  */
