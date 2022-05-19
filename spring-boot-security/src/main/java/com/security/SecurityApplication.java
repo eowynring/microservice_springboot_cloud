@@ -14,4 +14,14 @@ public class SecurityApplication {
     SpringApplication.run(SecurityApplication.class,args);
   }
 
+  /**
+   * 关于持久化的测试SQL
+   * CREATE TABLE persistent_logins (
+   *     username VARCHAR (64) NOT NULL,
+   *     series VARCHAR (64) PRIMARY KEY,
+   *     token VARCHAR (64) NOT NULL,
+   *     last_used TIMESTAMP NOT NULL
+   * )
+   */
+
 }
