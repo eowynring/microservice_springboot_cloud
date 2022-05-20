@@ -101,6 +101,11 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         .tokenValiditySeconds(3600) // remember 过期时间，单为秒
         .userDetailsService(userDetailService) // 处理自动登录逻辑
         .and()
+        .logout()
+        .logoutUrl("/signout")
+        .logoutSuccessUrl("/signout/success")
+        .deleteCookies("JSESSIONID")
+        .and()
         .authorizeRequests() // 授权配置
         .antMatchers("/authentication/require",
             "/login.html",

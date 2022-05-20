@@ -1,5 +1,6 @@
 package com.security.controller;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,11 @@ public class TestController {
   @GetMapping("index")
   public Object index(Authentication authentication) {
     return authentication;
+  }
+
+  @GetMapping("/signout/success")
+  public String signout(){
+    return "退出成功，请重新登录";
   }
 
 }
