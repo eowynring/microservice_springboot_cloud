@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      profile: dev
+      label: test
+      uri: http://localhost:12580
+
+server:
+  port: 12581

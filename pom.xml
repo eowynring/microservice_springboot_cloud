@@ -33,6 +33,7 @@
         <module>spring-boot-actuator</module>
       <module>spring-boot-security</module>
       <module>spring-boot-eureka</module>
+      <module>spring-boot-config</module>
     </modules>
 
     <properties>
