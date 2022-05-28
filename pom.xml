@@ -35,6 +35,7 @@
       <module>spring-boot-eureka</module>
       <module>spring-boot-config</module>
       <module>spring-cloud-sleuth</module>
+        <module>spring-cloud-nacos-register</module>
     </modules>
 
     <properties>
