@@ -17,7 +17,7 @@ public class TestQueueController {
 
   @PostMapping
   public String test(){
-    testProducer.sendTestMessage("test",0);
+    testProducer.sendTestMessage("test1",0);
     return "ok";
   }
 

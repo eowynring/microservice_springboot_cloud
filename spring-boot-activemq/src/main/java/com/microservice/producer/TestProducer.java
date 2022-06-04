@@ -64,7 +64,7 @@ public class TestProducer {
           }
         }
       } catch (JMSException e) {
-        log.error("发送延迟消息队列失败", e);
+        log.error("发送消息队列失败", e);
       }
     }
   }
