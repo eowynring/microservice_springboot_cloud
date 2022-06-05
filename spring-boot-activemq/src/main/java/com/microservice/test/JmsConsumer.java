@@ -12,7 +12,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
  */
 public class JmsConsumer {
 
-  public static final String ACTIVEMQ_URL = "tcp://39.105.15.49/:61616";
+  public static final String ACTIVEMQ_URL = "tcp://120.46.149.32:61616";
   public static final String QUEUE_NAME = "test-queue";
 
   public static void main(String[] args) throws Exception{
