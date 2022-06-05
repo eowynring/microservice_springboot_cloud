@@ -3,13 +3,16 @@ server:
 
 spring:
   activemq:
-    broker-url: xxx
+    broker-url: tcp://120.46.149.32:61616
     user: admin
-      password: admin
-      pool:
-        enabled: true
-        max-connections: 50
-      in-memory: true
-      jms:
-        cache:
-          session-cache-size: 5
+    password: admin
+    pool:
+      enabled: true
+      max-connections: 50
+    in-memory: true
+    jms:
+      cache:
+        session-cache-size: 5
+
+myqueue:
+  boot-activemq-queue
