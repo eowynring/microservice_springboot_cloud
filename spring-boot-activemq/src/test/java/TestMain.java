@@ -27,4 +27,10 @@ public class TestMain {
     queue_produce.produceMessage();
   }
 
+  @Test
+  public void testDelaySend() throws InterruptedException {
+    queue_produce.produceDelayMessage("delay_queue","这是一条延迟消息",5000);
+    Thread.sleep(7000);
+  }
+
 }

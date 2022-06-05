@@ -16,4 +16,9 @@ public class Queue_consummer {
   public void receive(TextMessage textMessage) throws JMSException {
     System.out.println(" ***  消费者收到消息  ***"+textMessage.getText());
   }
+
+  @JmsListener(destination = "delay_queue")
+  public void receiveDelay(TextMessage textMessage) throws JMSException {
+    System.out.println(" ***  延迟消费者收到消息  ***"+textMessage.getText());
+  }
 }
