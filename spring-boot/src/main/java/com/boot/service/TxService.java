@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 /**
  * @author guofei
@@ -54,10 +55,10 @@ public class TxService extends ServiceImpl<UserMapper, Member> {
 
 
   public void  insertTest(){
-    Member member = new Member();
-    member.setName("test");
-    save(member);
-    //int i = 1/0;
+      Member member = new Member();
+      member.setName("ceshi");
+      save(member);
+      //int i = 1/0;
   }
 
 
