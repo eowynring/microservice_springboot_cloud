@@ -9,6 +9,6 @@ public class QueueNameConstant {
   /**
    * 定义消费的消息队列名称
    */
-  public static final String TEST_QUEUE = "test.queue";
+  public static final String TEST_QUEUE = "test.queue.test";
 
 }

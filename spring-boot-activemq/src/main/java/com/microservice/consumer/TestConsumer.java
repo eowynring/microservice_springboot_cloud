@@ -14,8 +14,18 @@ import org.springframework.stereotype.Component;
 public class TestConsumer {
 
   @JmsListener(destination = QueueNameConstant.TEST_QUEUE)
-  private void testConsumer(String message){
+  private void testConsumer(String message) throws Exception {
     log.info("消费消息------->{}",message);
+    Boolean test = test();
+    if (!test){
+      throw new RuntimeException("重试中。。。");
+    }
   }
 
+  public Boolean test(){
+    if (1==1){
+      return Boolean.FALSE;
+    }
+    return Boolean.TRUE;
+  }
 }

@@ -3,9 +3,9 @@ server:
 
 spring:
   activemq:
-    broker-url: tcp://120.46.149.32:61616
+    broker-url:
     user: admin
-    password: admin
+    password: secret
     pool:
       enabled: true
       max-connections: 50
