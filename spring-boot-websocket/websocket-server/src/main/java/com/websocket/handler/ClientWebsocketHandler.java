@@ -7,6 +7,8 @@ import com.websocket.factory.WebSocketMessageFactory;
 import com.websocket.manager.ClientWebSocketSessionManager;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.test.annotation.Commit;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -15,7 +17,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 /**
  * @author guofei
  * @date 2022/6/15 11:02 AM
- * ipad 长连接会话处理器
+ * 长连接会话处理器
  */
 @Slf4j
 public class ClientWebsocketHandler extends TextWebSocketHandler {
@@ -28,7 +30,7 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
    */
   @Override
   public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-    String code = getIpadUniqueCode(session);
+    String code = getClientUniqueCode(session);
     if (log.isDebugEnabled()){
       log.debug("准备建立会话，code=[{}]",code);
     }
@@ -49,12 +51,12 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
    */
   @Override
   protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-    String ipadUniqueCode = getIpadUniqueCode(session);
+    String clientUniqueCode = getClientUniqueCode(session);
     String id = session.getId();
     log.info("id->{}",id);
     String payload = message.getPayload();
     if (log.isDebugEnabled()){
-      log.debug("收到消息，code=[{}],payload={}", ipadUniqueCode, payload);
+      log.debug("收到消息，code=[{}],payload={}", clientUniqueCode, payload);
     }
     ClientMessage clientMessage;
     try {
@@ -84,13 +86,13 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
    */
   @Override
   public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-    String ipadUniqueCode = getIpadUniqueCode(session);
-    log.warn("断开会话，code=[{}]",ipadUniqueCode);
-    ClientWebSocketSessionManager.remove(ipadUniqueCode,session);
+    String clientUniqueCode = getClientUniqueCode(session);
+    log.warn("断开会话，code=[{}]",clientUniqueCode);
+    ClientWebSocketSessionManager.remove(clientUniqueCode,session);
   }
 
 
-  private String getIpadUniqueCode(WebSocketSession session) {
+  private String getClientUniqueCode(WebSocketSession session) {
     if (session == null || session.getUri() == null){
       return "";
     }
@@ -102,7 +104,7 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
     return "";
   }
 
-  private void directSendMessage(WebSocketSession session, ClientMessage message) {
+  public void directSendMessage(WebSocketSession session, ClientMessage message) {
     try {
       session.sendMessage(new TextMessage(JSON.toJSONString(message)));
     } catch (IOException e) {

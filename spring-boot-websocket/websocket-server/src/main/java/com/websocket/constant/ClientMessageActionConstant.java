@@ -3,7 +3,7 @@ package com.websocket.constant;
 /**
  * @author guofei
  * @date 2022/6/15 11:17 AM
- * ipad 消息行为常量
+ * 消息行为常量
  */
 public  interface ClientMessageActionConstant {
 

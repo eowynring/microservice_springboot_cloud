@@ -20,11 +20,11 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
   @Override
   public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
-    webSocketHandlerRegistry.addHandler(ipadWebsocketHandler(),"/websocket/**").setAllowedOrigins("*");
+    webSocketHandlerRegistry.addHandler(clientWebsocketHandler(),"/websocket/**").setAllowedOrigins("*");
   }
 
   @Bean
-  ClientWebsocketHandler ipadWebsocketHandler(){
+  ClientWebsocketHandler clientWebsocketHandler(){
     return new ClientWebsocketHandler();
   }
 

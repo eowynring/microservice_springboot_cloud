@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator;
@@ -20,7 +21,7 @@ import org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorato
 @Slf4j
 public class ClientWebSocketSessionManager {
 
-  private static final Map<String, List<ClientWebSocketSessionManager>> ipadSessionMap =
+  private static final Map<String, List<ClientWebSocketSessionManager>> clientSessionMap =
       new ConcurrentHashMap<>(100);
 
   private final ConcurrentWebSocketSessionDecorator delegateSession;
@@ -41,7 +42,7 @@ public class ClientWebSocketSessionManager {
     ConcurrentWebSocketSessionDecorator sessionDecorator = new ConcurrentWebSocketSessionDecorator(
         session, 3000, 10000000);
     synchronized (code.intern()) {
-      ipadSessionMap.computeIfAbsent(code,
+      clientSessionMap.computeIfAbsent(code,
           k -> new CopyOnWriteArrayList<>()).add(new ClientWebSocketSessionManager(sessionDecorator));
     }
   }
@@ -71,7 +72,7 @@ public class ClientWebSocketSessionManager {
    * @return
    */
   public static List<ClientWebSocketSessionManager> listSession(String code) {
-    return ipadSessionMap.get(code) == null ? Collections.EMPTY_LIST : ipadSessionMap.get(code);
+    return clientSessionMap.get(code) == null ? Collections.EMPTY_LIST : clientSessionMap.get(code);
   }
 
   /**
