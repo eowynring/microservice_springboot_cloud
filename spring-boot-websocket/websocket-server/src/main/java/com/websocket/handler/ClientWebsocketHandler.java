@@ -28,14 +28,14 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
    */
   @Override
   public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-    String code = getClientUniqueCode(session);
+    String clientId = getClientId(session);
     if (log.isDebugEnabled()){
-      log.debug("准备建立会话，code=[{}]",code);
+      log.debug("准备建立会话，clientId=[{}]",clientId);
     }
     directSendMessage(session, WebSocketMessageFactory.active());
-    ClientWebSocketSessionManager.save(code,session);
+    ClientWebSocketSessionManager.save(clientId,session);
     if (log.isDebugEnabled()){
-      log.debug("建立会话成功，code=[{}], sessionId=[{}]",code,session.getId());
+      log.debug("建立会话成功，clientId=[{}], sessionId=[{}]",clientId,session.getId());
     }
   }
 
@@ -49,12 +49,12 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
    */
   @Override
   protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-    String clientUniqueCode = getClientUniqueCode(session);
+    String clientId = getClientId(session);
     String id = session.getId();
     log.info("id->{}",id);
     String payload = message.getPayload();
     if (log.isDebugEnabled()){
-      log.debug("收到消息，code=[{}],payload={}", clientUniqueCode, payload);
+      log.debug("收到消息，clientId=[{}],payload={}", clientId, payload);
     }
     ClientMessage clientMessage;
     try {
@@ -84,13 +84,13 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
    */
   @Override
   public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-    String clientUniqueCode = getClientUniqueCode(session);
-    log.warn("断开会话，code=[{}]",clientUniqueCode);
-    ClientWebSocketSessionManager.remove(clientUniqueCode,session);
+    String clientId = getClientId(session);
+    log.warn("断开会话，clientId=[{}]",clientId);
+    ClientWebSocketSessionManager.remove(clientId,session);
   }
 
 
-  private String getClientUniqueCode(WebSocketSession session) {
+  private String getClientId(WebSocketSession session) {
     if (session == null || session.getUri() == null){
       return "";
     }
