@@ -37,6 +37,7 @@
       <module>spring-cloud-sleuth</module>
         <module>spring-cloud-nacos-register</module>
       <module>spring-boot-websocket</module>
+      <module>spring-boot-okhttp</module>
     </modules>
 
     <properties>

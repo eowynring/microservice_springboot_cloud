@@ -5,7 +5,7 @@ package com.websocket.constant;
  * @date 2022/6/15 11:17 AM
  * ipad 消息行为常量
  */
-public  interface   IpadMessageActionConstant {
+public  interface ClientMessageActionConstant {
 
   /**
    * 关闭会话
@@ -23,5 +23,10 @@ public  interface   IpadMessageActionConstant {
 
 
   String  ERROR_MESSAGE = "errorMessage";
+
+
+  String UPDATE_SETTING = "needUpdateSetting";
+
+  String ACTIVE = "active...";
 
 }

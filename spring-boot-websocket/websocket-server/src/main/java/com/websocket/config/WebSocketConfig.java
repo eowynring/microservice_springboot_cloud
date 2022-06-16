@@ -1,6 +1,6 @@
 package com.websocket.config;
 
-import com.websocket.handler.IpadWebsocketHandler;
+import com.websocket.handler.ClientWebsocketHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,12 +20,12 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
   @Override
   public void registerWebSocketHandlers(WebSocketHandlerRegistry webSocketHandlerRegistry) {
-    webSocketHandlerRegistry.addHandler(ipadWebsocketHandler(),"/ipad/**").setAllowedOrigins("*");
+    webSocketHandlerRegistry.addHandler(ipadWebsocketHandler(),"/websocket/**").setAllowedOrigins("*");
   }
 
   @Bean
-  IpadWebsocketHandler ipadWebsocketHandler(){
-    return new IpadWebsocketHandler();
+  ClientWebsocketHandler ipadWebsocketHandler(){
+    return new ClientWebsocketHandler();
   }
 
 }

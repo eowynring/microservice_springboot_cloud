@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IpadMessage {
+public class ClientMessage {
 
   private String messageId = System.nanoTime() + "";
 
