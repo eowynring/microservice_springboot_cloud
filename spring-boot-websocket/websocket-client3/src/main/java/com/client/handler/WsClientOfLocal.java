@@ -2,6 +2,7 @@ package com.client.handler;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.channels.NotYetConnectedException;
 import java.util.Map;
 import javax.annotation.Resource;
 import lombok.Data;
@@ -33,12 +34,14 @@ public class WsClientOfLocal extends WebSocketClientAbs{
    */
   public static  int isConnect = 0;
 
+  WebSocketClient client;
+
 
   @Override
   public WebSocketClient createWebSocketClient(String wsUri, Map<String, String> httpHeaders) {
     try {
       //创建客户端连接对象
-      WebSocketClient client = new WebSocketClient(new URI(wsUri), httpHeaders) {
+        client = new WebSocketClient(new URI(wsUri), httpHeaders) {
 
         /**
          * 建立连接调用
@@ -92,6 +95,11 @@ public class WsClientOfLocal extends WebSocketClientAbs{
           }
           isConnect = 0;
         }
+
+        @Override
+        public void send(String text) throws NotYetConnectedException {
+          super.send(text);
+        }
       };
       return client;
     } catch (URISyntaxException e) {
@@ -144,6 +152,15 @@ public class WsClientOfLocal extends WebSocketClientAbs{
       return newWsClient;
     }
     return null;
+  }
+
+  /**
+   * 发送消息
+   * @param message
+   */
+  public void sendMessage(String message){
+    client.send(message);
+    log.info("已发送消息：{}" , message);
   }
 
 }
