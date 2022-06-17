@@ -15,6 +15,7 @@
     <module>websocket-server</module>
     <module>websocket-client1</module>
     <module>websocket-client2</module>
+    <module>websocket-client3</module>
   </modules>
 
   <properties>
