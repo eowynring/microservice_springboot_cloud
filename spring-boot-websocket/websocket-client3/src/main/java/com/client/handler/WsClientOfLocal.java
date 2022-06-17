@@ -128,7 +128,7 @@ public class WsClientOfLocal extends WebSocketClientAbs{
     isConnect = 2;
     // 连接状态不再是0请求中，判断建立结果是不是1已建立
     long startTime = System.currentTimeMillis();
-    while (1 != newWsClient.getReadyState().ordinal()) {
+    /*while (1 != newWsClient.getReadyState().ordinal()) {
       // 避免网络波动，设置持续等待连接时间
       long endTime = System.currentTimeMillis();
       long waitTime = (endTime - startTime) / 1000;
@@ -136,7 +136,7 @@ public class WsClientOfLocal extends WebSocketClientAbs{
         log.info("WsClientOfLocal -> 建立连接异常，请稍后再试");
         break;
       }
-    }
+    }*/
     if (1 == newWsClient.getReadyState().ordinal()) {
       this.setWsClient(newWsClient);
       newWsClient.send("WsClientOfLocal -> 客户端连接成功！");

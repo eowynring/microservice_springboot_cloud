@@ -14,7 +14,7 @@ public class MessageService {
 
   /**
    * 处理消息
-   * @param s
+   * @param s 消息体
    */
   void handleMessage(String s){
     log.info("handleMessage -> 开始处理消息---");

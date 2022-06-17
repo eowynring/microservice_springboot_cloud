@@ -25,8 +25,7 @@ public class WebSocketHeartbeatTimer {
 
   /**
    * Local WebSocket连接心跳检测，重连机制，每20秒触发一次
-   * 注意 @Async 注解，要使用异步线程的方式来执行心跳检测，
-   * 避免任务线程被其他任务占用
+   * 注意 @Async 注解，要使用异步线程的方式来执行心跳检测，避免任务线程被其他任务占用
    */
   @Async
   @Scheduled(cron = "0/20 * * * * ?")

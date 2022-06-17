@@ -18,6 +18,10 @@ public class WebSocketMessageFactory {
     return ClientMessage.builder().action(ClientMessageActionConstant.CLOSE_SESSION).build();
   }
 
+  public static ClientMessage pong(String messageId){
+    return ClientMessage.builder().action(ClientMessageActionConstant.PONG).messageId(messageId).build();
+  }
+
   public static ClientMessage updateSetting() {
     return ClientMessage.builder().action(ClientMessageActionConstant.UPDATE_SETTING).build();
   }

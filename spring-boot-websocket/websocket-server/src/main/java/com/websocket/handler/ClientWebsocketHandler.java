@@ -1,8 +1,10 @@
 package com.websocket.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.websocket.client.event.ClientPingEvent;
 import com.websocket.constant.ClientMessageActionConstant;
 import com.websocket.entity.ClientMessage;
+import com.websocket.event.EventPublisher;
 import com.websocket.factory.WebSocketMessageFactory;
 import com.websocket.manager.ClientWebSocketSessionManager;
 import java.io.IOException;
@@ -50,8 +52,6 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
   @Override
   protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     String clientId = getClientId(session);
-    String id = session.getId();
-    log.info("id->{}",id);
     String payload = message.getPayload();
     if (log.isDebugEnabled()){
       log.debug("收到消息，clientId=[{}],payload={}", clientId, payload);
@@ -67,10 +67,12 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
     String action = clientMessage.getAction();
     switch (action){
       case ClientMessageActionConstant.PING:
-        log.info("pong");
+        EventPublisher.publish(new ClientPingEvent(clientId,clientMessage));
         break;
       case ClientMessageActionConstant.ACK:
         log.info("ack");
+        break;
+      default:
     }
 
   }
