@@ -28,7 +28,7 @@ public class Client1Application {
   public WebSocketClient MyWebSocketClient() {
     try {
       SocketClient webSocketClient = new SocketClient(
-          new URI("ws://127.0.0.1:8888/websocket/client1"));
+          new URI("wss://127.0.0.1:8888/websocket/client1"));
       webSocketClient.connect();
       return webSocketClient;
     } catch (URISyntaxException e) {

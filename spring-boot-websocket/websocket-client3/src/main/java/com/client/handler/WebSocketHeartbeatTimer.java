@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
+@ConditionalOnProperty(prefix = "scheduling", name = "enabled", havingValue = "true")
 public class WebSocketHeartbeatTimer {
 
   @Resource
@@ -27,7 +29,7 @@ public class WebSocketHeartbeatTimer {
    * Local WebSocket连接心跳检测，重连机制，每20秒触发一次
    * 注意 @Async 注解，要使用异步线程的方式来执行心跳检测，避免任务线程被其他任务占用
    */
-  @Async
+/*  @Async
   @Scheduled(cron = "0/20 * * * * ?")
   public void wsHeartbeatOfLocal() {
     try {
@@ -41,6 +43,12 @@ public class WebSocketHeartbeatTimer {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }*/
+  @Async
+  @Scheduled(cron = "0/2 * * * * ?")
+  public void test(){
+    log.info("test--------test");
   }
+
 
 }
