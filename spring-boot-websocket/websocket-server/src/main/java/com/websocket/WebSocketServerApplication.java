@@ -25,6 +25,7 @@ public class WebSocketServerApplication {
   @Value("${isClient}")
   private Integer isClient;
 
+/*
   @Bean
   public WebSocketClient MyWebSocketClient() {
     try {
@@ -42,5 +43,6 @@ public class WebSocketServerApplication {
     }
     return null;
   }
+*/
 
 }

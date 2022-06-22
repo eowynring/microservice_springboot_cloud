@@ -1,7 +1,9 @@
 package com.websocket.manager;
 
 import com.alibaba.fastjson.JSON;
+import com.websocket.handler.ClientWebsocketHandler;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,13 @@ public class ClientWebSocketSessionManager {
 
   private final ConcurrentWebSocketSessionDecorator delegateSession;
 
+  //private final List<String> sessionsIp = new CopyOnWriteArrayList<>();
+  /**
+   *
+   * 静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
+   */
+  private static int onlineCount = 0;
+
 
   public ClientWebSocketSessionManager(
       ConcurrentWebSocketSessionDecorator delegateSession) {
@@ -42,9 +51,17 @@ public class ClientWebSocketSessionManager {
   public static void save(String code, WebSocketSession session) {
     ConcurrentWebSocketSessionDecorator sessionDecorator = new ConcurrentWebSocketSessionDecorator(
         session, 3000, 10000000);
+    if (clientSessionMap.get(code)!=null && clientSessionMap.get(code).contains(code)){
+      if (log.isDebugEnabled()){
+        log.debug("code session is exist,code=[{}]", code);
+      }
+      return;
+    }
     synchronized (code.intern()) {
       clientSessionMap.computeIfAbsent(code,
           k -> new CopyOnWriteArrayList<>()).add(new ClientWebSocketSessionManager(sessionDecorator));
+      addOnlineCount();
+      log.info("有新连接加入！当前在线连接为" + getOnlineCount());
     }
   }
 
@@ -56,6 +73,8 @@ public class ClientWebSocketSessionManager {
    */
   public static void remove(String code, WebSocketSession session) {
     listSession(code).removeIf(s->s.delegateSession.getDelegate().equals(session));
+    subOnlineCount();
+    log.info("有新连接断开！当前在线连接为" + getOnlineCount());
   }
 
   /**
@@ -74,6 +93,10 @@ public class ClientWebSocketSessionManager {
    */
   public static List<ClientWebSocketSessionManager> listSession(String code) {
     return clientSessionMap.get(code) == null ? Collections.EMPTY_LIST : clientSessionMap.get(code);
+  }
+
+  public static List<ClientWebSocketSessionManager> getSessionList(String code){
+    return clientSessionMap.get(code);
   }
 
   /**
@@ -96,5 +119,18 @@ public class ClientWebSocketSessionManager {
     });
   }
 
+
+
+  public static synchronized int getOnlineCount() {
+    return onlineCount;
+  }
+
+  public static synchronized void addOnlineCount() {
+    ClientWebSocketSessionManager.onlineCount++;
+  }
+
+  public static synchronized void subOnlineCount() {
+    ClientWebSocketSessionManager.onlineCount--;
+  }
 
 }

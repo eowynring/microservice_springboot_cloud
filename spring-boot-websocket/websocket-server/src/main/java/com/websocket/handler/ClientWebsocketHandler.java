@@ -9,6 +9,7 @@ import com.websocket.factory.WebSocketMessageFactory;
 import com.websocket.manager.ClientWebSocketSessionManager;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -23,6 +24,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 public class ClientWebsocketHandler extends TextWebSocketHandler {
 
 
+
   /**
    * 建立会话
    * @param session
@@ -34,11 +36,17 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
     if (log.isDebugEnabled()){
       log.debug("准备建立会话，clientId=[{}]",clientId);
     }
+    if (!CollectionUtils.isEmpty(ClientWebSocketSessionManager.getSessionList(clientId))){
+      afterConnectionClosed(session, null);
+    }
     directSendMessage(session, WebSocketMessageFactory.active());
+    //log.info("session-ip=[{}]",session.getRemoteAddress().getHostName());
+    log.info("session-ip=[{}]",session.getRemoteAddress().getAddress().getHostAddress());
     ClientWebSocketSessionManager.save(clientId,session);
     if (log.isDebugEnabled()){
       log.debug("建立会话成功，clientId=[{}], sessionId=[{}]",clientId,session.getId());
     }
+
   }
 
 
@@ -89,6 +97,7 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
     String clientId = getClientId(session);
     log.warn("断开会话，clientId=[{}]",clientId);
     ClientWebSocketSessionManager.remove(clientId,session);
+
   }
 
 
@@ -111,4 +120,5 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
       log.error("发送消息失败, 消息={}, 错误={}", message, e.getMessage());
     }
   }
+
 }
