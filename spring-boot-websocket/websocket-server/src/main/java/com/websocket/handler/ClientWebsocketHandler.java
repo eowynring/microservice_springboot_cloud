@@ -25,6 +25,7 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
 
 
 
+
   /**
    * 建立会话
    * @param session
@@ -32,6 +33,7 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
    */
   @Override
   public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+    String hostAddress = session.getRemoteAddress().getAddress().getHostAddress();
     String clientId = getClientId(session);
     if (log.isDebugEnabled()){
       log.debug("准备建立会话，clientId=[{}]",clientId);
@@ -40,9 +42,8 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
       afterConnectionClosed(session, null);
     }
     directSendMessage(session, WebSocketMessageFactory.active());
-    //log.info("session-ip=[{}]",session.getRemoteAddress().getHostName());
     log.info("session-ip=[{}]",session.getRemoteAddress().getAddress().getHostAddress());
-    ClientWebSocketSessionManager.save(clientId,session);
+    ClientWebSocketSessionManager.save(hostAddress, clientId, session);
     if (log.isDebugEnabled()){
       log.debug("建立会话成功，clientId=[{}], sessionId=[{}]",clientId,session.getId());
     }
@@ -94,9 +95,10 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
    */
   @Override
   public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+    String hostAddress = session.getRemoteAddress().getAddress().getHostAddress();
     String clientId = getClientId(session);
     log.warn("断开会话，clientId=[{}]",clientId);
-    ClientWebSocketSessionManager.remove(clientId,session);
+    ClientWebSocketSessionManager.remove(hostAddress,clientId,session);
 
   }
 
