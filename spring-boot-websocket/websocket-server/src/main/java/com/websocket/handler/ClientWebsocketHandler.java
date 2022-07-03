@@ -38,8 +38,9 @@ public class ClientWebsocketHandler extends TextWebSocketHandler {
     if (log.isDebugEnabled()){
       log.debug("准备建立会话，clientId=[{}]",clientId);
     }
-    if (!CollectionUtils.isEmpty(ClientWebSocketSessionManager.getSessionList(clientId))){
-      afterConnectionClosed(session, null);
+    if (!CollectionUtils.isEmpty(ClientWebSocketSessionManager.getSessionList(hostAddress))){
+      //afterConnectionClosed(session, null);
+      return;
     }
     directSendMessage(session, WebSocketMessageFactory.active());
     log.info("session-ip=[{}]",session.getRemoteAddress().getAddress().getHostAddress());
