@@ -1,0 +1,10 @@
+server:
+  port: 8888
+  max-http-header-size: 8192
+
+logging:
+  level:
+    com.websocket: debug
+
+
+isClient: 0

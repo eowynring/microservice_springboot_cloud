@@ -9,6 +9,7 @@ import org.java_websocket.client.WebSocketClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author guofei
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootApplication
 @Slf4j
+@EnableScheduling
 public class Client1Application {
 
   public static void main(String[] args) {
@@ -26,7 +28,7 @@ public class Client1Application {
   public WebSocketClient MyWebSocketClient() {
     try {
       SocketClient webSocketClient = new SocketClient(
-          new URI("ws://127.0.0.1:8888/websocket/client1"));
+          new URI("wss://127.0.0.1:8888/websocket/client1"));
       webSocketClient.connect();
       return webSocketClient;
     } catch (URISyntaxException e) {
