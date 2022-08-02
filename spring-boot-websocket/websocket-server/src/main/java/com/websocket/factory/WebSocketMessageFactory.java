@@ -4,7 +4,7 @@ import com.websocket.constant.ClientMessageActionConstant;
 import com.websocket.entity.ClientMessage;
 
 /**
- * @author guofei
+ * @author guofei¡
  * @date 2022/6/15 11:45 AM
  * websocket 消息工厂类
  */
