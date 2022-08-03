@@ -19,6 +19,7 @@ public class UserDTO {
   private String encryptId;*/
 
   //@Min(value = 100L, groups = Update.class)
+  //@Min(value = 100L, groups = Save.class)
   @Min(value = 100L)
   private Long userId;
 

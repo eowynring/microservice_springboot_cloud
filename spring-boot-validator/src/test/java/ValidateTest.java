@@ -1,4 +1,5 @@
 import com.alibaba.fastjson.JSON;
+import com.common.JsonResult;
 import com.validate.ValidateApplication;
 import org.junit.After;
 import org.junit.runner.RunWith;
@@ -17,6 +18,7 @@ public class ValidateTest {
   @After
   public void printResult() {
     System.out.println(JSON.toJSONString(result));
+
   }
 
 }
