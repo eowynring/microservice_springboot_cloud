@@ -5,9 +5,11 @@ import com.common.JsonResult;
 import com.validate.handle.ValidationList;
 import com.validate.pojo.UserDTO;
 import com.validate.pojo.UserDTOs;
+import com.validate.service.NativeValidateService;
 import com.validate.service.ValidateService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.Resource;
 import org.junit.Test;
 
@@ -39,8 +41,6 @@ public class Test1 extends ValidateTest{
     List<UserDTO> userDtos = getUserDtos();
     //String s = JSONObject.toJSONString(userDtos);
     //ValidationList validationList = JSONObject.parseObject(s, ValidationList.class);
-    UserDTOs userDTOs = new UserDTOs();
-    userDTOs.setUserDTOS(userDtos);
     ValidationList validationList = new ValidationList();
     validationList.addAll(userDtos);
     //ValidationList userDTOs1 = (ValidationList) userDTOs;
@@ -59,6 +59,13 @@ public class Test1 extends ValidateTest{
     userDTO2.setUserName("jordan");
     userDTOS.add(userDTO2);
     return userDTOS;
+  }
+
+  @Resource
+  private NativeValidateService nativeValidateService;
+  @Test
+  public void  test3(){
+    System.out.println(nativeValidateService.nativeValidate(2));
   }
 
 
