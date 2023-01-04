@@ -1,6 +1,7 @@
 package com.boot;
 
 import com.boot.thread.SimpleThreadFactory;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,15 @@ import java.util.concurrent.*;
 
 @Slf4j
 public class ThreadPoolTest {
+
+    private static final ThreadPoolExecutor pool;
+
+    static {
+        ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("po-detail-pool-%d").build();
+        pool = new ThreadPoolExecutor(4, 8, 60L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(512),
+                threadFactory, new ThreadPoolExecutor.AbortPolicy());
+        pool.allowCoreThreadTimeOut(true);
+    }
 
     @Test
     public void testThreadFactory(){

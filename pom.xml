@@ -38,6 +38,7 @@
         <module>spring-cloud-nacos-register</module>
       <module>spring-boot-websocket</module>
       <module>spring-boot-okhttp</module>
+        <module>spring-boot-dtp</module>
     </modules>
 
     <properties>
