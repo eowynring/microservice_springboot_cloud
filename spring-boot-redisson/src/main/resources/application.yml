@@ -1,0 +1,12 @@
+server:
+  port: 8007
+spring:
+  application:
+    name: spring-boot-redisson
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  redisson:
+    config:
+      nodeAddresses:
+        - "redis://127.0.0.1:6379"
