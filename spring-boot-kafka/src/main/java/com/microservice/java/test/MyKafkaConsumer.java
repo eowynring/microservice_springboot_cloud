@@ -1,14 +1,13 @@
 package com.microservice.java.test;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Properties;
 
 @Slf4j
@@ -24,6 +23,10 @@ public class MyKafkaConsumer {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, CONSUMER_GROUP_NAME);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        // 手动提交
+        // 1、同步手动提交
+        // 2、异步手动提交
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         //创建一个消费者的客户端
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
         // 消费者订阅主题列表
@@ -45,5 +48,15 @@ public class MyKafkaConsumer {
             consumer.close();
             log.info("The consumer is now closed");
         }
+        // 1、同步手动提交
+        //consumer.commitSync();
+        // 2、异步手动提交
+        consumer.commitAsync((offsets, exception) -> {
+            if (exception == null) {
+                System.out.println(offsets);
+            } else {
+                log.error("fail to commit offsets {}", offsets, exception);
+            }
+        });
     }
 }

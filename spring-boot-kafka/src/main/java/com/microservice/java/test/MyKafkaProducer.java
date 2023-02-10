@@ -1,7 +1,6 @@
 package com.microservice.java.test;
 
-import cn.hutool.db.sql.Order;
-import com.alibaba.fastjson.JSON;
+
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -23,8 +22,19 @@ public class MyKafkaProducer {
 
         ProducerRecord<String, String> producerRecord = new ProducerRecord<>(TOPIC_NAME, "this is a key", "this is a value");
         RecordMetadata metadata = producer.send(producerRecord).get();
-        //=====阻塞=======
+        // 阻塞
         System.out.println("同步方式发送消息结果：" + "topic-" + metadata.topic() + "|partition-" + metadata.partition() + "|offset-" + metadata.offset());
+
+        // 异步生产消息
+        /** producer.send(producerRecord, (recordMetadata, e) -> {
+            if (e != null) {
+                e.printStackTrace();
+            } else {
+                System.out.println("异步发送消息结果：" + "topic-" + metadata.topic() + "|partition-" + metadata.partition() + "|offset-" + metadata.offset());
+            }
+        });*/
+
+
 
     }
 }
