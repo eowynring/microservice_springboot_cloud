@@ -2,7 +2,7 @@ server:
   port: 8007
 spring:
   application:
-    name: spring-boot-mybatis-plus
+    name: spring-boot-cache-redis
   redis:
     host: 127.0.0.1
     timeout: 10000ms
@@ -18,8 +18,8 @@ spring:
         # 连接池中的最小空闲连接 默认 0
         min-idle: 0
 
-    password: XXX
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 39.105.15.49:8848
+#    password: XXX
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 39.105.15.49:8848

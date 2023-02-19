@@ -1,9 +1,9 @@
 server:
-  port: 8004
+  port: 8005
 spring:
   application:
     name: spring-boot-swagger
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 39.105.15.49:8848
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 39.105.15.49:8848
