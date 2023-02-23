@@ -31,16 +31,17 @@
         <module>spring-boot-shardingsphere</module>
         <module>spring-boot</module>
         <module>spring-boot-actuator</module>
-      <module>spring-boot-security</module>
-      <module>spring-boot-eureka</module>
-      <module>spring-boot-config</module>
-      <module>spring-cloud-sleuth</module>
+        <module>spring-boot-security</module>
+        <module>spring-boot-eureka</module>
+        <module>spring-boot-config</module>
+        <module>spring-cloud-sleuth</module>
         <module>spring-cloud-nacos-register</module>
-      <module>spring-boot-websocket</module>
-      <module>spring-boot-okhttp</module>
+        <module>spring-boot-websocket</module>
+        <module>spring-boot-okhttp</module>
         <module>spring-boot-dtp</module>
         <module>spring-boot-redisson</module>
         <module>spring-boot-kafka</module>
+        <module>greeter-spring-boot-autoconfigure</module>
     </modules>
 
     <properties>
