@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 /**
  * @author guofei
  * @date 2022/7/3 5:09 PM
@@ -37,5 +39,4 @@ public class TxControllerTest {
   public void test(){
     personService.sayHello();
   }
-
 }

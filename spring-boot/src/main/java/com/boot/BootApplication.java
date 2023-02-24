@@ -1,9 +1,14 @@
 package com.boot;
 
+import com.boot.course.conditionalonproperty.EmailNotification;
+import com.boot.course.conditionalonproperty.NotificationSender;
+import com.boot.course.conditionalonproperty.SmsNotification;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
 
 import java.util.concurrent.ThreadPoolExecutor;
 
