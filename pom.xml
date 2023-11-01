@@ -42,6 +42,7 @@
         <module>spring-boot-redisson</module>
         <module>spring-boot-kafka</module>
         <module>greeter-spring-boot-autoconfigure</module>
+        <module>springboot-netty</module>
     </modules>
 
     <properties>
